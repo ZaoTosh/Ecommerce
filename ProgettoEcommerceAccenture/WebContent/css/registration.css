@@ -163,6 +163,10 @@ body{
   margin-bottom: 0;
 }
 
+.hideDiv{
+	display:none;
+}
+
 @media (max-width:420px) {
   .wrapper .form .inputfield{
     flex-direction: column;

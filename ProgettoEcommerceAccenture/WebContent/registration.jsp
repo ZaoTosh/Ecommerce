@@ -8,40 +8,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registration Form</title>
   <link rel="stylesheet" href="css/registration.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
 </head>
-<body>
+<body style="background-color:#E3981C">
 <div class="wrapper">
   <div class="title">
     Registration Form
   </div>
   <div class="form">
-  	<form method="post" action="RegistrationServlet">
+  	<form method="post" action="RegistrationServlet" onsubmit="return Validate()">
     <div class="inputfield">
       <label>Username</label>
       <input id="username" name="username" type="text" class="input" required>
     </div>
-
+    <div id="errorUsername" class="hideDiv alert alert-danger" role="alert">
+	</div>
     <div class="inputfield">
       <label>Nome</label>
       <input id="nome" name="nome" type="text" class="input" required>
     </div>
+    <div id="errorNome" class="hideDiv alert alert-danger" role="alert">
+	</div>
     <div class="inputfield">
       <label>Cognome</label>
       <input id="cognome" name="cognome" type="text" class="input" required>
     </div>
+    <div id="errorCognome" class="hideDiv alert alert-danger" role="alert">
+	</div>
     <div class="inputfield">
       <label>Password</label>
       <input id="password" name="password" type="password" class="input" required>
     </div>
+    <div id="errorPassword" class="hideDiv alert alert-danger" role="alert">
+	</div>
     <div class="inputfield">
       <label>Conferma Password</label>
-      <input type="password" name="confirmPassword" class="input" required>
+      <input type="password" id="confirmPassword" name="confirmPassword" class="input" required>
     </div>
+    <div id="errorConfermaPassword" class="hideDiv alert alert-danger" role="alert">
+	</div>
 
     <div class="inputfield">
       <label>Data di nascita</label>
       <input id="data_nascita" name="dataNascita" type="date" class="input" placeholder="dd/mm/yyyy" required>
     </div>
+    <div id="errorDataNascita" class="hideDiv alert alert-danger" role="alert">
+	</div>
 
     <div class="inputfield">
       <label>Via</label>
@@ -55,6 +70,8 @@
       <label style="margin-left: 10px">CAP</label>
       <input id="cap" name="cap" type="number" class="input" required>
     </div>
+    <div id="errorIndirizzo" class="hideDiv alert alert-danger" role="alert">
+	</div>
     <div class="inputfield terms">
       <label class="check">
         <input type="checkbox">
@@ -71,4 +88,5 @@
   </div>
 </div>
 </body>
+<script src="js/registration.js"></script>
 </html>
