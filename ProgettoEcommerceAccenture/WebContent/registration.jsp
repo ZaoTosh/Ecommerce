@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,50 +10,50 @@
   <link rel="stylesheet" href="css/registration.css">
 </head>
 <body>
-<% String messaggio = (String) request.getAttribute("msg"); %>
 <div class="wrapper">
   <div class="title">
     Registration Form
   </div>
   <div class="form">
+  	<form method="post" action="RegistrationServlet">
     <div class="inputfield">
       <label>Username</label>
-      <input id="username" type="text" class="input" required>
+      <input id="username" name="username" type="text" class="input" required>
     </div>
 
     <div class="inputfield">
       <label>Nome</label>
-      <input id="nome" type="text" class="input" required>
+      <input id="nome" name="nome" type="text" class="input" required>
     </div>
     <div class="inputfield">
       <label>Cognome</label>
-      <input id="cognome" type="text" class="input" required>
+      <input id="cognome" name="cognome" type="text" class="input" required>
     </div>
     <div class="inputfield">
       <label>Password</label>
-      <input id="password" type="password" class="input" required>
+      <input id="password" name="password" type="password" class="input" required>
     </div>
     <div class="inputfield">
       <label>Conferma Password</label>
-      <input type="password" class="input" required>
+      <input type="password" name="confirmPassword" class="input" required>
     </div>
 
     <div class="inputfield">
       <label>Data di nascita</label>
-      <input id="data_nascita" type="date" class="input" placeholder="dd/mm/yyyy" required>
+      <input id="data_nascita" name="dataNascita" type="date" class="input" placeholder="dd/mm/yyyy" required>
     </div>
 
     <div class="inputfield">
       <label>Via</label>
-      <input id="via" type="text" class="input" required>
+      <input id="via" name="via" type="text" class="input" required>
       <label style="margin-left: 10px">Numero</label>
-      <input id="numero" type="text" class="input" required>
+      <input id="numero" name="numero" type="text" class="input" required>
     </div>
     <div class="inputfield">
       <label>Citta'</label>
-      <input id="citta" type="text" class="input" required>
+      <input id="citta" name="citta" type="text" class="input" required>
       <label style="margin-left: 10px">CAP</label>
-      <input id="cap" type="number" class="input" required>
+      <input id="cap" name="cap" type="number" class="input" required>
     </div>
     <div class="inputfield terms">
       <label class="check">
@@ -65,10 +65,9 @@
     <div class="inputfield">
       <input type="submit" value="Registrati" class="btn">
     </div>
-    <%
-      if(messaggio != null){ %>
-        <p align="left"><% messaggio.toString(); %></p>
-    <% } %>
+    </form>
+    
+        <p align="left"> <c:out value="${msg}" /> </p>
   </div>
 </div>
 </body>
