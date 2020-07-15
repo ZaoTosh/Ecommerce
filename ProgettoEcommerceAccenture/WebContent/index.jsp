@@ -13,7 +13,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   
 </head>
+<body>
 <jsp:include page="navbar.jsp" />
+
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -24,14 +26,14 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="bootstrap/img/e-commerce1.png"   style="width:1230px;  height: 400px;"   alt="Image">
+        <img src="img/e-commerce1.png"   style="width:1230px;  height: 400px;"   alt="Image">
         <div class="carousel-caption">
           
         </div>      
       </div>
 
       <div class="item">
-        <img src="bootstrap/img/saldi1.png"   style="width:1230px;  height: 400px;" alt="Image">
+        <img src="img/saldi1.png"   style="width:1230px;  height: 400px;" alt="Image">
         <div class="carousel-caption">
         </div>      
       </div>
@@ -48,6 +50,7 @@
     </a>
 </div>
   
+
 <div class="container" style="margin-top:20px;">    
   <div id="row" class="row">
   <%-- <c:forEach var="elem" items="${listacategorie }">
@@ -65,7 +68,7 @@
   
   
   
-  
+
   
   <!--  <div class="col-sm-4">
       <div class="panel panel-warning">
