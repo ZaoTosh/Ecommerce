@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<!--  <html lang="en">
+<!-- <!DOCTYPE html>
+  <html lang="en">
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
