@@ -6,6 +6,8 @@ import ecommerce.prodotto.model.ProdottoBean;
 
 public interface IProdottoDao {
 	
+	
+	
 	public boolean addProdotto(ProdottoBean prodotto);
 	public boolean deleteProdotto(int id);
 	public boolean updateProdotto(ProdottoBean prodotto);
