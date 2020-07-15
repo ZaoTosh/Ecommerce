@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import ecommerce.user.model.*;
 import ecommerce.registration.validator.*;
 import ecommerce.user.service.*;
 /**
@@ -51,7 +50,7 @@ public class RegistrationServlet extends HttpServlet {
 		utente.setPassword( request.getParameter("password"));
 		utente.setNome(request.getParameter("nome"));
 		utente.setCognome(request.getParameter("cognome"));
-		
+		String confirmPassword = request.getParameter("confirmPassword");
 		if(!request.getParameter("dataNascita").equals("") && request.getParameter("dataNascita") != null ) {
 			if(DateValidator.validator(request.getParameter("dataNascita"))) { 
 				utente.setDataNascita(LocalDate.parse(request.getParameter("dataNascita")));
@@ -66,7 +65,7 @@ public class RegistrationServlet extends HttpServlet {
 		String numero = (String)request.getParameter("numero");
 		String citta = (String)request.getParameter("citta");
 		String cap = (String)request.getParameter("cap");
-		if(RegistrationValidator.validate(utente) && data && AddressValidator.validate(via, numero, citta, cap)) {
+		if(RegistrationValidator.validate(utente,confirmPassword) && data && AddressValidator.validate(via, numero, citta, cap)) {
 			logger.info("dati validi");
 			UserBean checkUtente = us.getUserByUsername(utente.getUsername());
 			if(checkUtente == null) {

@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import ecommerce.user.service.*;
 import ecommerce.user.model.*;
 import ecommerce.user.service.AddressService;
 /**
