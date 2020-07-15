@@ -38,44 +38,50 @@ public class TestUserDao {
 
 		
 		UserDaoImpl us=new UserDaoImpl();
-//
-//		System.out.println("Prova di inserimento");	
-//		System.out.println(us.addUser(us1));
-//		System.out.println(us.addUser(us2));
-//		System.out.println(us5);
-//		System.out.println(us.addUser(us5));
-//		System.out.println("Prova di cancellazione");
-//		System.out.println(us.deleteUser("Alessio"));
-//		System.out.println(us.deleteUser("prova"));
-//		
-//		System.out.println("Prova di variazione");
-//		us.addUser(us1);
-//		us.addUser(us2);
-//		us3.setUsername("prova");
-//		us3.setPassword("passwordcambiata");
-//		us3.setNome("Nomecambiato");
-//		us3.setCognome("Cognomecambiato");
-//		LocalDate data3=LocalDate.of(2020, 12, 28);
-//		us3.setDataNascita(data3);
-//		System.out.println(us.updateUserByUsername(us3));
-////		
-//		System.out.println("Prova di chiamata");
-//		us1=us.getUserByUsername("prova");
-//		System.out.println(us1.toString());
-//		us1=us.getUserByUsername("Alessio");
-//		System.out.println(us1.toString());
-//		System.out.println("Prova di chiamata null");
-//		us4=us.getUserByUsername("ciao");
-//		System.out.println(us4);
-//		
-//		System.out.println("Prova chiamata tutti user");
-//		ArrayList<UserBean> lista=new ArrayList<UserBean>();
-//		lista=us.getAllUser();
-//		for (UserBean userBean : lista) {
-//			System.out.println(userBean.toString());
-//		}
-//		System.out.println(us.deleteUser("Alessio"));
-//		System.out.println(us.deleteUser("prova"));
+
+		System.out.println("Prova di inserimento");	
+		System.out.println(us.addUser(us1));
+		System.out.println(us.addUser(us2));
+		System.out.println(us5);
+		System.out.println(us.addUser(us5));
+		System.out.println("Prova di cancellazione");
+		System.out.println(us.deleteUser("Alessio"));
+		System.out.println(us.deleteUser("prova"));
+		
+		
+		System.out.println("Prova di variazione");
+		us.addUser(us1);
+		us.addUser(us2);
+		us3.setUsername("prova");
+		us3.setPassword("passwordcambiata");
+		us3.setNome("Nomecambiato");
+		us3.setCognome("Cognomecambiato");
+		LocalDate data3=LocalDate.of(2020, 12, 28);
+		us3.setDataNascita(data3);
+		System.out.println(us.updateUserByUsername(us3));
+
+		System.out.println("Prova di chiamata");
+		us1=us.getUserByUsername("prova");
+		System.out.println(us1.toString());
+		us1=us.getUserByUsername("Alessio");
+		System.out.println(us1.toString());
+		System.out.println("Prova di chiamata null");
+		us4=us.getUserByUsername("ciao");
+		System.out.println(us4);
+		
+		System.out.println("Prova chiamata tutti user");
+		ArrayList<UserBean> lista=new ArrayList<UserBean>();
+		lista=us.getAllUser();
+		System.out.println(lista.size());
+		for (UserBean userBean : lista) {
+			System.out.println(userBean.toString());
+		}
+		System.out.println(us.deleteUser("Alessio"));
+		System.out.println(us.deleteUser("prova"));
+		System.out.println(us.deleteUser("prova2"));
+		
+		
+		
 	}
 
 }

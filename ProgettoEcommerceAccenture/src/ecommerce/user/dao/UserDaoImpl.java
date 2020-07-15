@@ -118,7 +118,11 @@ public class UserDaoImpl implements IDaoUser{
 				user.setPassword(resultSet.getString(2));
 				user.setNome(resultSet.getString(3));
 				user.setCognome(resultSet.getString(4));
-				user.setDataNascita(resultSet.getDate(5).toLocalDate());
+				if (resultSet.getDate(5)==null) {
+					user.setDataNascita(null);
+				}else {
+					user.setDataNascita(resultSet.getDate(5).toLocalDate());
+				}
 			}
 		}catch (SQLException e){
 			logger.error("Errore del database" , e);
@@ -145,7 +149,11 @@ public class UserDaoImpl implements IDaoUser{
 				userAppoggio.setPassword(resultSet.getString(2));
 				userAppoggio.setNome(resultSet.getString(3));
 				userAppoggio.setCognome(resultSet.getString(4));
-				userAppoggio.setDataNascita(resultSet.getDate(5).toLocalDate());
+				if (resultSet.getDate(5)==null) {
+					userAppoggio.setDataNascita(null);
+				}else {
+					userAppoggio.setDataNascita(resultSet.getDate(5).toLocalDate());
+				}
 				listaUser.add(userAppoggio);
 			}
 		}catch (SQLException e){
