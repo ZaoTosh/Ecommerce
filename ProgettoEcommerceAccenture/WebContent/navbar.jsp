@@ -66,7 +66,7 @@
         <li><a href="#" style="color: black">Contatti</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="login.html" style="color: black"><span class="glyphicon glyphicon-user" style="color: black"></span> Log In</a></li>
+        <li><a href="login.jsp" style="color: black"><span class="glyphicon glyphicon-user" style="color: black"></span> Log In</a></li>
         <!--<li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li> -->
       </ul>
     </div>
