@@ -47,8 +47,7 @@
 					<div class="mb-3">
 						<label for="address"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">indirizzo</font></font></label>
 						<input type="text" class="form-control" id="address" value="" disabled>
-					</div>
-					
+					</div>			
 					<div class="mb-3">
 						<label for="password"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">password</font></font></label>
 						<input type="text" class="form-control" id="password" value="" disabled>
