@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- <!DOCTYPE html>
   <html lang="en">
 <head>
@@ -47,6 +50,9 @@
   </div>
 </div> -->
 
+<% String user = (String) session.getAttribute("user"); %>
+
+
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -59,14 +65,19 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#" style="color: white">Home</a></li>
+        <li class="active"><a href="index.jsp" style="color: white">Home</a></li>
         <li><a href="#" style="color: black">Prodotti</a></li>
         <li><a href="#" style="color: black">Offerte</a></li>
         <li><a href="#" style="color: black">Categorie</a></li>
         <li><a href="#" style="color: black">Contatti</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="login.jsp" style="color: black"><span class="glyphicon glyphicon-user" style="color: black"></span> Log In</a></li>
+      <%if(user != null){ %>
+      	<li><a href="#" style="color: black"><span class="glyphicon glyphicon-user" style="color: black; margin-left:10px"></span>Benvenuto <c:out value="${user}" /></a></li>
+      	<li><a href="LoginServlet" style="color: black"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+      <%}else{ %>
+      	<li><a href="login.jsp" style="color: black"><span class="glyphicon glyphicon-user" style="color: black"></span> Log In</a></li>
+      <% } %>
         <!--<li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li> -->
       </ul>
     </div>
