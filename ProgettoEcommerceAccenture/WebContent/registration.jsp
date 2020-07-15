@@ -13,7 +13,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   
 </head>
-<body style="background-color:#E3981C">
+<body  style="background-color:#E3981C">
 <div class="wrapper">
   <div class="title">
     Registration Form
