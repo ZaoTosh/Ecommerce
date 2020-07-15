@@ -212,6 +212,44 @@ public class ProdottoDaoImpl implements IProdottoDao{
 		logger.info("get all prodotti invoked!!!");
 		return listaProdotti;
 	}
+	@Override
+	public ArrayList<ProdottoBean> getProdottoByCategoria(int idCategoria) {
+		logger.info("get prodotti by categoria");
+		oggettoConnessione=ConnectionFactory.getIstance().getConnection();
+		String query="SELECT * FROM LISTA_PRODOTTI WHERE ID_CATEGORIA=?";
+		ArrayList<ProdottoBean> listaProdotti=null;
+		try {
+			listaProdotti=new ArrayList<ProdottoBean>();
+			preparedStatement=oggettoConnessione.prepareStatement(query);
+			preparedStatement.setInt(1, idCategoria);
+			resultSet=preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				ProdottoBean prodottoAppoggio=new ProdottoBean();
+				prodottoAppoggio.setIdProdotto(resultSet.getInt(2));
+				prodottoAppoggio.setPrezzo(resultSet.getDouble(3));
+				prodottoAppoggio.setQuantitaDisponibile(resultSet.getInt(4));
+				prodottoAppoggio.setNome(resultSet.getString(5));
+				if (resultSet.getString(6)==null) {
+					prodottoAppoggio.setDescrizione(null);
+				}else {
+					prodottoAppoggio.setDescrizione(resultSet.getString(6));
+				}
+				if (resultSet.getString(7)==null) {
+					prodottoAppoggio.setUrl(null);
+				}else {
+					prodottoAppoggio.setUrl(resultSet.getString(7));
+				}
+				listaProdotti.add(prodottoAppoggio);
+			}
+		}catch (SQLException e){
+			logger.error("Errore del database" , e);
+		}catch (Exception e) {			
+			logger.error("Errore generico " , e);
+		}	
+		logger.info("get prodotti by categoria invoked!!!");
+		System.out.println(listaProdotti.size());
+		return listaProdotti;
+	}
 
 
 

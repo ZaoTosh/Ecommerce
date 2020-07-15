@@ -1,6 +1,7 @@
 package ecommerce.prodotto.test;
 
 import java.util.LinkedList;
+import java.util.ArrayList;
 
 import javax.swing.plaf.synth.SynthScrollBarUI;
 
@@ -88,6 +89,16 @@ public class TestProdottoDao {
 //		for (ProdottoBean prodottoBean : listaProdotti) {
 //			System.out.println(prodottoBean.toString());
 //		}
+		
+		System.out.println("Test chiamata per categoria");
+		ArrayList<ProdottoBean> listaProdotti=pdi.getProdottoByCategoria(1);
+		for (ProdottoBean prodottoBean : listaProdotti) {
+			System.out.println(prodottoBean.toString());
+		}
+		listaProdotti=pdi.getProdottoByCategoria(2);
+		for (ProdottoBean prodottoBean : listaProdotti) {
+			System.out.println(prodottoBean.toString());
+		}
 //		
 	}
 

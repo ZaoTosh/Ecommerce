@@ -80,8 +80,6 @@ public class TestUserDao {
 		System.out.println(us.deleteUser("prova"));
 		System.out.println(us.deleteUser("prova2"));
 		
-		
-		
 	}
 
 }
