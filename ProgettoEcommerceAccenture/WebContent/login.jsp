@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +21,7 @@
     <p class="forgot" align="center"><a href="#">Forgot Password?</a></p>
     <p class="forgot" align="center"><a href="registration.jsp" style="color: #E3981C">Registrati</a></p>
   </form>
+  <p align="left"> <c:out value="${msg}" /> </p>
 </div>
 
 </body>
