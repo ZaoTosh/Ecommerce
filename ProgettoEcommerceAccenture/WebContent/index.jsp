@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,10 +49,27 @@
 </div>
   
 <div class="container" style="margin-top:20px;">    
-  <div class="row">
-    <div class="col-sm-4">
+  <div id="row" class="row">
+  <%-- <c:forEach var="elem" items="${listacategorie }">
+			<div class="col-sm-4"> 
+      			<div class="panel panel-warning">
+       			 	<div class="panel-heading">${elem.nome} </div>
+       			 	
+       				<div class="panel-body"> <a href= "WelcomServlet?id=${elem.idCategoria}">  <img src="${elem.urlImmagine}" class="img-responsive" style="width:400px; height:200px;" alt="Image" ></a></div>
+        			<div class="panel-footer">${elem.descrizione}</div>
+      			</div>
+    		</div>
+		</c:forEach> --%>
+	</div>
+</div>
+  
+  
+  
+  
+  
+  <!--  <div class="col-sm-4">
       <div class="panel panel-warning">
-        <div class="panel-heading">Negozio articoli scolastici</div>
+        <div class="panel-heading" >Negozio articoli scolastici</div>
         <div class="panel-body"><img src="bootstrap/img/diario.png" class="img-responsive" style="width:400px; height:200px;"alt="Image"></div>
         <div class="panel-footer">Vendita articoli da scuola</div>
       </div>
@@ -97,14 +115,12 @@
       </div>
     </div>
   </div>
-</div><br><br>
+</div><br><br>-->
 
 
 <jsp:include page="footer.jsp" />
-
-
 </body>
 
-
+<script src= "js/index.js"></script>
 
 </html>
