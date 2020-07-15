@@ -11,7 +11,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   
 </head>
-
+<jsp:include page="navbar.jsp" />
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -100,6 +100,8 @@
 
 
 <jsp:include page="footer.jsp" />
+
+
 </body>
 
 
