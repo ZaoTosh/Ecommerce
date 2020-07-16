@@ -1,8 +1,8 @@
 
 
-let carts = document.querySelectorAll('.addCart');
+/*let carts = document.querySelectorAll('.addCart');
 
-for(let i=0; i < carts.length; i++){
+/*for(let i=0; i < carts.length; i++){
 	carts[i].addEventListener('click', () => {
 		cartNumbers();
 	})
@@ -18,7 +18,7 @@ function cartNumbers(){
 		localStorage.setItem('cartNumbers',1);
 		document.querySelector('.cart span').textContent = 1;
 	}
-}
+} */
 
 var listaProdotti = [];
 
@@ -35,7 +35,18 @@ function aggiungiCarrello(id, prezzo, thiss){
 	//console.log(qta);
 	//sessionStorage.setItem("shoppingCart",JSON.stringify(listaProdotti));
 	console.log(listaProdotti);
+	aggiornaCarrello(qta);
 	
+}
+
+var totale = 0;
+
+function aggiornaCarrello(qta){
+	qta = parseInt(qta);
+	console.log(qta);
+	totale += qta;
+	document.querySelector('.cart span').textContent = "(" + totale + ")";
+	sessionStorage.setItem("qtaTot",totale);
 }
 
 function creaCarrello(){
@@ -46,7 +57,7 @@ function sendCart(){
 	creaCarrello();
 	$.ajax({
 		url: "CartServlet",
-		type:"GET",
+		type:"POST",
 		dataType: "json",
 		data: sessionStorage.getItem("shoppingCart"),
 		contentType: 'application/json',
@@ -65,6 +76,8 @@ if(sessionStorage.getItem("shoppingCart") != null){
 	loadCart();
 }
 
-
-
+if(sessionStorage.getItem("qtaTot") != null){
+	//sessionStorage.removeItem("qtaTot");
+	document.querySelector('.cart span').textContent = "(" + sessionStorage.getItem("qtaTot") + ")";
+}
 
