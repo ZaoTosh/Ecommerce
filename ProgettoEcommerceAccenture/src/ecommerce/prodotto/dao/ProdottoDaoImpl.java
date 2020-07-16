@@ -100,7 +100,7 @@ public class ProdottoDaoImpl implements IProdottoDao{
 		}catch (Exception e) {			
 			logger.error("Errore generico " , e);
 		}	
-		logger.info("delete user invoked!!!");
+		logger.info("delete prodotto invoked!!!");
 		return ctrl;
 	}
 
@@ -216,7 +216,7 @@ public class ProdottoDaoImpl implements IProdottoDao{
 	public ArrayList<ProdottoBean> getProdottoByCategoria(int idCategoria) {
 		logger.info("get prodotti by categoria");
 		oggettoConnessione=ConnectionFactory.getIstance().getConnection();
-		String query="SELECT * FROM LISTA_PRODOTTI WHERE ID_CATEGORIA=?";
+		String query="SELECT * FROM LISTA_PRODOTTI_CATEGORIA WHERE ID_CATEGORIA=?";
 		ArrayList<ProdottoBean> listaProdotti=null;
 		try {
 			listaProdotti=new ArrayList<ProdottoBean>();
@@ -247,7 +247,6 @@ public class ProdottoDaoImpl implements IProdottoDao{
 			logger.error("Errore generico " , e);
 		}	
 		logger.info("get prodotti by categoria invoked!!!");
-		System.out.println(listaProdotti.size());
 		return listaProdotti;
 	}
 

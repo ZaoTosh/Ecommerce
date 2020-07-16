@@ -95,7 +95,7 @@ public class TestProdottoDao {
 		for (ProdottoBean prodottoBean : listaProdotti) {
 			System.out.println(prodottoBean.toString());
 		}
-		listaProdotti=pdi.getProdottoByCategoria(2);
+		listaProdotti=pdi.getProdottoByCategoria(5);
 		for (ProdottoBean prodottoBean : listaProdotti) {
 			System.out.println(prodottoBean.toString());
 		}
