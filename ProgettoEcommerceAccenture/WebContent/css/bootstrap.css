@@ -18,3 +18,20 @@
       display: none; 
     }
   }
+  
+  .add-cart{
+  	position:absolute;
+  	width:100%;
+  	background-color:darkgrey;
+  	transition:all 0.3s ease-in-out;
+  	opacity:0;
+  	cursor:pointer;
+  	text-align:center;
+  }
+  
+  .panel-body:hover .add-cart{
+  	bottom:50px;
+  	opacity:1;
+  	padding:10px;
+  	text-decoration:none
+  }
