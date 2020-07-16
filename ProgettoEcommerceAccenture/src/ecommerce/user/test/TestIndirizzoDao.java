@@ -44,6 +44,8 @@ public class TestIndirizzoDao {
 		boolean esito3=dao.addIndirizzo(indirizzo3);
 		System.out.println(esito3);
 		
+		ArrayList<IndirizzoBean> listaIndirizzi = dao.getAllIndirizziByUser("user1");
+		System.out.println(listaIndirizzi);
 		//boolean esito4=dao.deleteIndirizzo(11);
 		//System.out.println(esito4);
 		

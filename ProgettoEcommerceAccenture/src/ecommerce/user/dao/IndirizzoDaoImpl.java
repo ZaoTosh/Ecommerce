@@ -238,6 +238,42 @@ public class IndirizzoDaoImpl implements IDaoIndirizzo{
 		return indirizzoAppoggio;	
 	
 	}
+
+	@Override
+	public ArrayList<IndirizzoBean> getAllIndirizziByUser(String utente) {
+		String query = "select * from indirizzo where utente=?";
+		conn = ConnectionFactory.getIstance().getConnection();
+
+		ArrayList<IndirizzoBean> arrayIndirizzi = new ArrayList<IndirizzoBean>();
+		
+
+		try {
+			preparedStatement = conn.prepareStatement(query);
+			preparedStatement.setString(1, utente);
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				IndirizzoBean indirizzoAppoggio = new IndirizzoBean();
+				
+				indirizzoAppoggio.setIdIndirizzo(resultSet.getInt(1));
+				indirizzoAppoggio.setVia(resultSet.getString(2));
+				indirizzoAppoggio.setNumero(resultSet.getInt(3));
+				indirizzoAppoggio.setCitta(resultSet.getString(4));
+				indirizzoAppoggio.setCap(resultSet.getInt(5));
+				indirizzoAppoggio.setUtente(utente);
+				indirizzoAppoggio.setUltimoIndirizzo(resultSet.getString(7));
+				arrayIndirizzi.add(indirizzoAppoggio);
+
+			}
+		} catch (SQLException e) {
+			//logger.error("Errore nel database", e);
+			e.printStackTrace();
+		}catch(Exception e) {
+			//logger.error("Errore",e);
+			e.printStackTrace();
+		}
+
+		return arrayIndirizzi;	
+	}
 }
 
 	

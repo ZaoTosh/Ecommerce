@@ -12,5 +12,6 @@ public interface IDaoIndirizzo {
 	public IndirizzoBean getIndirizzoById (int idIndirizzo);
 	public ArrayList<IndirizzoBean> getAllIndirizzi();
 	public IndirizzoBean getUltimoIndirizzoByUser(String utente);
+	public ArrayList<IndirizzoBean> getAllIndirizziByUser(String utente);
 	
 }
