@@ -25,15 +25,15 @@
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <img src="img/e-commerce1.png"   style="width:1230px;  height: 400px;"   alt="Image">
+      <div class="item active" style="background-color:#58a9e8;">
+        <img src="img/ecommerce2.png"   style="width:750px;  height: 400px;"   alt="Image">
         <div class="carousel-caption">
           
         </div>      
       </div>
 
-      <div class="item">
-        <img src="img/saldi1.png"   style="width:1230px;  height: 400px;" alt="Image">
+      <div class="item" style="background-color:#0182c6;">
+        <img src="img/saldi2.png"   style="width:700px;  height: 400px;" alt="Image">
         <div class="carousel-caption">
         </div>      
       </div>
