@@ -24,4 +24,7 @@ public class AddressService {
 		else
 			return true;
 	}
+	public IndirizzoBean getUltimoIndirizzoByUser(String utente) {
+		return dao.getUltimoIndirizzoByUser(utente);
+	}
 }
