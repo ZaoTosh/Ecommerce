@@ -3,6 +3,7 @@ import ecommerce.user.model.*;
 import ecommerce.user.dao.*;
 
 public class AddressService {
+	
 	private IndirizzoDaoImpl dao = new IndirizzoDaoImpl();
 	
 	public boolean addAddress(IndirizzoBean address) {
