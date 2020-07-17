@@ -70,7 +70,7 @@ function sendCart(thiss){
 	    mimeType: 'application/json',
 	    async:false,
 	    success:function(data){
-	    	window.location.replace('cart.jsp');
+	    	window.location.replace('cart.jsp'); 
 		}
 	});	
 }

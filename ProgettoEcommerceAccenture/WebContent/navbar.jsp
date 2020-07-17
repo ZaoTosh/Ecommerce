@@ -74,7 +74,7 @@
       <ul class="nav navbar-nav navbar-right">
       <%if(user != null){ %>
       	<li><a href="#" style="color: black"><span class="glyphicon glyphicon-user" style="color: black; margin-left:10px"></span>Benvenuto <c:out value="${user}" /></a></li>
-      	<li class="cart"><a onclick="sendCart(this)" style="color: black"><span class="glyphicon glyphicon-shopping-cart" style="color: black; margin-left:10px"></span>Carrello</a></li>
+      	<li class="cart" ><a onclick="sendCart(this)" style="color: black"><span class="glyphicon glyphicon-shopping-cart" style="color: black; margin-left:10px"></span>Carrello</a></li>
       	<li><a href="LoginServlet" style="color: black"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
       <%}else{ %>
       	<li><a href="login.jsp" style="color: black"><span class="glyphicon glyphicon-user" style="color: black"></span> Log In</a></li>
