@@ -14,7 +14,13 @@
 	<title>Insert title here</title>
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/cart.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="css/navbar.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
+<jsp:include page="navbar.jsp" />
 <body style="background-color:#E3981C">
 	
 	<% HashMap<IndirizzoBean,ArrayList<ProdottoBean>> lista = (HashMap<IndirizzoBean,ArrayList<ProdottoBean>>) session.getAttribute("lista");%>
@@ -61,13 +67,13 @@
 								<td><c:out value="${prodotto.nome}"/></td>
 								<td><div class="input-group bootstrap-touchspin">
 									<span class="input-group-btn">
-										<button class="btn btn-default bootstrap-touchspin-down" type="button">-</button>
+										<button class="btn btn-default bootstrap-touchspin-down" type="button" onclick="removeQuantity(${prodotto.idProdotto},this)">-</button>
 									</span>
 									<span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span>
 									<input type="text" name="" value="<c:out value="${prodotto.quantitaDisponibile}"/>" class="input-qty form-control text-center" style="display: block;">
 									<span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span>
 									<span class="input-group-btn">
-										<button class="btn btn-default bootstrap-touchspin-up" type="button">+</button>
+										<button class="btn btn-default bootstrap-touchspin-up" type="button" onclick="addQuantity(${prodotto.idProdotto},this)">+</button>
 									</span>
 									<!-- </div><c:out value="${prodotto.quantitaDisponibile}"/> -->
 									</div>
@@ -150,7 +156,7 @@
             <div class="btn-group btns-cart">
                 <button type="button" class="btn btn-primary"><i class="fa fa-arrow-circle-left"></i> Continue Shopping</button>
                 <button type="button" class="btn btn-primary">Update Cart</button>
-                <button type="button" class="btn btn-primary">Checkout <i class="fa fa-arrow-circle-right"></i></button>
+                <button type="button" class="btn btn-primary" onclick="checkout()">Checkout <i class="fa fa-arrow-circle-right"></i></button>
             </div>
     </div>
     <!-- End Cart -->
@@ -171,5 +177,7 @@
 				</div>
             </div>
 </div>
+<jsp:include page="footer.jsp" />
 </body>
+<script src="js/ordine.js"></script>
 </html>

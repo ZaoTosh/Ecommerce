@@ -3,6 +3,7 @@ import ecommerce.ordine.model.*;
 import ecommerce.user.model.IndirizzoBean;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -19,6 +20,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -73,20 +77,20 @@ public class OrdineServlet extends HttpServlet {
 			
 			HashMap<Integer,Integer> mappa = new HashMap<Integer,Integer>();
 			IndirizzoBean indirizzo = new IndirizzoBean();
-			List<Map<String, Object>> jsonMap =  mapper.readValue(json , new TypeReference<List<Map<String, Object>>>(){});
-			for(Map<String,Object> elem : jsonMap) {
-				if(elem.get("idProdotto") != null) {
-					mappa.put(Integer.parseInt(elem.get("idProdotto").toString()), Integer.parseInt(elem.get("quantita").toString()));
-				}else {
-					indirizzo.setIdIndirizzo(Integer.parseInt(elem.get("idIndirizzo").toString()));
-					indirizzo.setVia(elem.get("via").toString());
-					indirizzo.setNumero(Integer.parseInt(elem.get("numero").toString()));
-					indirizzo.setCitta(elem.get("citta").toString());
-					indirizzo.setCap(Integer.parseInt(elem.get("cap").toString()));
-				}
-				
+			JSONObject jsonObject = new JSONObject(json);
+			JSONArray valoreProdotti = jsonObject.getJSONArray("products");
+			for(int i=0; i< valoreProdotti.length(); i++) {
+				mappa.put(valoreProdotti.getJSONObject(i).getInt("id"), valoreProdotti.getJSONObject(i).getInt("quantity"));
 			}
+			indirizzo.setVia(jsonObject.getJSONObject("address").getString("via"));
+			indirizzo.setNumero(jsonObject.getJSONObject("address").getInt("numero"));
+			indirizzo.setCitta(jsonObject.getJSONObject("address").getString("citta"));
+			indirizzo.setCap(jsonObject.getJSONObject("address").getInt("cap"));
 			indirizzo.setUtente((String)session.getAttribute("user"));
+			
+				System.out.println(mappa);
+				System.out.println(indirizzo);
+				
 			OrdineService os = new OrdineService();
 			try {
 				OrdineBean ob = os.confermaOrdine(mappa,indirizzo);
