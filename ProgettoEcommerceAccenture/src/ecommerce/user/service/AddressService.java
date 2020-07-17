@@ -33,4 +33,10 @@ public class AddressService {
 	public IndirizzoBean getUltimoIndirizzoByUser(String utente) {
 		return dao.getUltimoIndirizzoByUser(utente);
 	}
+	public IndirizzoBean getIndirizzoById(int idIndirizzo) {
+		return dao.getIndirizzoById(idIndirizzo);
+	}
+	public boolean updateIndirizzo(IndirizzoBean indirizzo) {
+		return dao.updateIndirizzo(indirizzo);
+	}
 }

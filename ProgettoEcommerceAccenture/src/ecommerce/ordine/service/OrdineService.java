@@ -110,9 +110,25 @@ public class OrdineService {
 		int idOrdine = ordineDaoImpl.getSequence();
 		ordine.setIdOrdine(idOrdine);
 		ordine.setUtente(indirizzoUtente.getUtente());
-		addressService.addAddress(indirizzoUtente);
-		ordine.setIndirizzo(indirizzoUtente.getIdIndirizzo());
+		int idIndirizzoInput = indirizzoUtente.getIdIndirizzo();
+		IndirizzoBean checkIndirizzo = addressService.getIndirizzoById(idIndirizzoInput);
+		if(checkIndirizzo == null) {
+			indirizzoUtente.setUltimoIndirizzo("Y");
+			addressService.addAddress(indirizzoUtente);
+			IndirizzoBean temp = addressService.getUltimoIndirizzoByUser(indirizzoUtente.getUtente());
+			ordine.setIndirizzo(temp.getIdIndirizzo());
+		}
+		else {
+			ordine.setIndirizzo(idIndirizzoInput);
+			IndirizzoBean ultimoIndirizzoUsato = addressService.getUltimoIndirizzoByUser(indirizzoUtente.getUtente());
+			ultimoIndirizzoUsato.setUltimoIndirizzo("N");
+			addressService.updateIndirizzo(ultimoIndirizzoUsato);
+			indirizzoUtente.setUltimoIndirizzo("Y");
+			addressService.updateIndirizzo(indirizzoUtente);
+		}
 		double sommaCostoProdotti = 0;
+		ordine.setDataOrdine(LocalDate.now());
+		ordineDaoImpl.addOrdine(ordine);
 		for(ProdottoBean prodotto:listaProdottiOrdine) {   
 			DettaglioBean temp = new DettaglioBean();
 			temp.setIdDettaglio(dettaglioDaoImpl.getSequence());
@@ -128,8 +144,7 @@ public class OrdineService {
 			sommaCostoProdotti += prodotto.getPrezzo()*prodotto.getQuantitaDisponibile();
 		}
 		ordine.setPrezzoTotale(sommaCostoProdotti);
-		ordine.setDataOrdine(LocalDate.now());
-		ordineDaoImpl.addOrdine(ordine);
+		ordineDaoImpl.updateOrdine(ordine);
 		return ordine;	
 	} 
 	/* i prodotti della listaProdottiOrdine devono avere il valore quantit‡Disponibile che rappresenta il numero
