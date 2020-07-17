@@ -13,6 +13,7 @@ body{margin-top:20px;}
 /* TABLES */
 .table {
     border-collapse: separate;
+    position:center;
 }
 .table-hover > tbody > tr:hover > td,
 .table-hover > tbody > tr:hover > th {

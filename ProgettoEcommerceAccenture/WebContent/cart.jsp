@@ -15,22 +15,18 @@
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/cart.css">
 </head>
-<body>
+<body style="background-color:#E3981C">
 	
 	<% HashMap<IndirizzoBean,ArrayList<ProdottoBean>> lista = (HashMap<IndirizzoBean,ArrayList<ProdottoBean>>) session.getAttribute("lista");%>
-	
-	<!--<c:forEach var="entry" items="${lista}">
+	<div style="text-align:center;">
+	<c:forEach var="entry" items="${lista}">
+		<p>L'ordine sarà spedito presso:</p>
 		Via: <c:out value="${entry.key.via}"/>
 		Numero: <c:out value="${entry.key.numero}"/>
 		Citta: <c:out value="${entry.key.citta}"/>
 		Cap: <c:out value="${entry.key.cap}"/>
-		
-		<c:forEach var="prodotto" items="${entry.value}">
-			Nome: <c:out value="${prodotto.nome}"/>
-			Prezzo: <c:out value="${prodotto.prezzo}"/>
-			Quantita: <c:out value="${prodotto.quantitaDisponibile}"/>
-		</c:forEach>	
-	</c:forEach>-->
+			
+	</c:forEach>
 	
 	
 	
@@ -150,16 +146,30 @@
                         </tr> -->
                     </tbody>
                 </table>
-            </div>
+               </div>
             <div class="btn-group btns-cart">
                 <button type="button" class="btn btn-primary"><i class="fa fa-arrow-circle-left"></i> Continue Shopping</button>
                 <button type="button" class="btn btn-primary">Update Cart</button>
                 <button type="button" class="btn btn-primary">Checkout <i class="fa fa-arrow-circle-right"></i></button>
             </div>
-
-        </div>
     </div>
     <!-- End Cart -->
-
+    <p>Inserire, se l'indirizzo di default non è ritenuto adatto, il nuovo indirizzo di spedizione</p>
+                <div class="inputfield">
+			      <label>Via</label>
+			      <input id="via" name="via" type="text" class="input" required>
+			      <label style="margin-left: 10px">Numero</label>
+			      <input id="numero" name="numero" type="text" class="input" required>
+			    </div>
+			    <div class="inputfield">
+			      <label>Citta'</label>
+			      <input id="citta" name="citta" type="text" class="input" required>
+			      <label style="margin-left: 10px">CAP</label>
+			      <input id="cap" name="cap" type="number" class="input" required>
+			    </div>
+			    <div id="errorIndirizzo" class="hideDiv alert alert-danger" role="alert">
+				</div>
+            </div>
+</div>
 </body>
 </html>
