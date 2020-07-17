@@ -20,7 +20,7 @@ public class CartService {
 		 IndirizzoBean indirizzo = addressDao.getUltimoIndirizzoByUser(username);
 		 HashMap<IndirizzoBean,ArrayList<ProdottoBean>> result = new  HashMap<IndirizzoBean,ArrayList<ProdottoBean>>();
 		 result.put(indirizzo, resultProdotti);
-		 return result; 
+		 return result;
 		 
 	 }
 }

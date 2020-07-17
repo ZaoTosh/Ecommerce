@@ -50,7 +50,7 @@ public class CartServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false); 
+		HttpSession session = request.getSession(false);
 		ObjectMapper mapper = new ObjectMapper();
 		RequestDispatcher rd=null;
 		if(session!=null && session.getAttribute("user") != null) {
