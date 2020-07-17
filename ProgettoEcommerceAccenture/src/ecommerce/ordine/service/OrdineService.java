@@ -10,19 +10,22 @@ import ecommerce.ordine.model.OrdineBean;
 import ecommerce.ordine.model.OrdineStoricoBean;
 import ecommerce.prodotto.model.ProdottoBean;
 import ecommerce.prodotto.service.ProdottoService;
+import ecommerce.user.model.IndirizzoBean;
 import ecommerce.user.model.UserBean;
 import ecommerce.user.service.AddressService;
 import ecommerce.user.service.UserService;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 
 import java.time.LocalDate;
 
 public class OrdineService {
-	
+	final static Logger logger = Logger.getLogger(OrdineService.class);
 	private OrdineDaoImpl ordineDaoImpl;
 	private DettaglioDaoImpl dettaglioDaoImpl;
 	private OrdineStoricoDaoImpl ordineStoricoDaoImpl;
@@ -99,15 +102,16 @@ public class OrdineService {
 		}
 		return listaProdottiOrdine;
 	}
-	public OrdineBean confermaOrdine(HashMap<Integer,Integer> mappaOrdine,String username)throws IdProductNotValidException,NotEnoughNumberOfProductException{
+	public OrdineBean confermaOrdine(HashMap<Integer,Integer> mappaOrdine,IndirizzoBean indirizzoUtente)throws IdProductNotValidException,NotEnoughNumberOfProductException{
 		ProdottoService prodottoService = new ProdottoService();
 		AddressService addressService = new AddressService();
 		ArrayList<ProdottoBean> listaProdottiOrdine = checkOrder(mappaOrdine);
 		OrdineBean ordine = new OrdineBean();
 		int idOrdine = ordineDaoImpl.getSequence();
 		ordine.setIdOrdine(idOrdine);
-		ordine.setUtente(username);
-		ordine.setIndirizzo((addressService.getUltimoIndirizzoByUser(username).getIdIndirizzo()));
+		ordine.setUtente(indirizzoUtente.getUtente());
+		addressService.addAddress(indirizzoUtente);
+		ordine.setIndirizzo(indirizzoUtente.getIdIndirizzo());
 		double sommaCostoProdotti = 0;
 		for(ProdottoBean prodotto:listaProdottiOrdine) {   
 			DettaglioBean temp = new DettaglioBean();
@@ -131,7 +135,17 @@ public class OrdineService {
 	/* i prodotti della listaProdottiOrdine devono avere il valore quantit‡Disponibile che rappresenta il numero
 	 * di prodotti che l'utente vuole acquistare
 	 */
-	public double getTotalCost(ArrayList<ProdottoBean> listaProdottiOrdine) {
+	public double getTotalCost(HashMap<Integer,Integer> mappaOrdine) {
+		ArrayList<ProdottoBean> listaProdottiOrdine = null;
+		try {
+			listaProdottiOrdine = checkOrder(mappaOrdine);
+		}
+		catch( IdProductNotValidException e) {
+			logger.error(e.getStackTrace());
+		}
+		catch(NotEnoughNumberOfProductException e) {
+			logger.error(e.getStackTrace());
+		}
 		double totalAmount = 0;
 		for(ProdottoBean prodotto:listaProdottiOrdine) {
 			totalAmount += prodotto.getPrezzo()*prodotto.getQuantitaDisponibile();
@@ -163,9 +177,19 @@ public class OrdineService {
 	/* i prodotti della listaProdottiOrdine devono avere il valore quantit‡Disponibile che rappresenta il numero
 	 * di prodotti che l'utente acquista
 	 */
-	public double SummerSale(ArrayList<ProdottoBean> listaProdottiOrdine, int[] idCategoria) {
+	public double SummerSale(HashMap<Integer,Integer> mappaOrdine, int[] idCategoria) {
 		ProdottoService prodottoService = new ProdottoService();
-		double spesaScontata = getTotalCost(listaProdottiOrdine);
+		ArrayList<ProdottoBean> listaProdottiOrdine = null;
+		try {
+			listaProdottiOrdine = checkOrder(mappaOrdine);
+		}
+		catch( IdProductNotValidException e) {
+			logger.error(e.getStackTrace());
+		}
+		catch(NotEnoughNumberOfProductException e) {
+			logger.error(e.getStackTrace());
+		}
+		double spesaScontata = getTotalCost(mappaOrdine);
 		for(int i=0;i<idCategoria.length;i++) {
 			ArrayList<ProdottoBean> listaProdottiScontati = prodottoService.getProdottoByCategoria(idCategoria[i]);
 			ArrayList<Integer> listaProdottiScontatiId = new ArrayList<Integer>();
