@@ -28,7 +28,7 @@ function aggiungiCarrello(id, prezzo, thiss){
 	var cart = new Object();
 	
 	cart.idProdotto=id;
-	cart.prezzoProdotto=prezzo;
+	//cart.prezzoProdotto=prezzo;
 	var qta = $(thiss).prev().val();
 	cart.quantita = qta;
 	listaProdotti.push(cart);
@@ -53,8 +53,14 @@ function creaCarrello(){
 	sessionStorage.setItem("shoppingCart",JSON.stringify(listaProdotti));
 }
 
-function sendCart(){
+function sendCart(thiss){
 	creaCarrello();
+	var url = 'CartServlet';
+	/*var xhr = new XMLHttpRequest();
+	xhr.open("POST", "http://localhost:9910/mymagic/mymagic");
+	xhr.setRequestHeader("content-type", "application/json");
+	xhr.send(sessionStorage.getItem("shoppingCart"));*/
+	
 	$.ajax({
 		url: "CartServlet",
 		type:"POST",
@@ -62,7 +68,10 @@ function sendCart(){
 		data: sessionStorage.getItem("shoppingCart"),
 		contentType: 'application/json',
 	    mimeType: 'application/json',
-	    async:false 
+	    async:false,
+	    success:function(data){
+	    	window.location.replace('cart.jsp');
+		}
 	});	
 }
 
