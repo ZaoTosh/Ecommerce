@@ -45,7 +45,7 @@ public class OrdineDaoImpl implements IOrdineDao {
 		int i=0;
 		try {
 			preparedStatement = conn.prepareStatement(query);
-			preparedStatement.setInt(1,getSequence());
+			preparedStatement.setInt(1,ordine.getIdOrdine());
 			preparedStatement.setDate(2, Date.valueOf(ordine.getDataOrdine()));
 			preparedStatement.setDouble(3, ordine.getPrezzoTotale());
 			preparedStatement.setString(4, ordine.getUtente());
