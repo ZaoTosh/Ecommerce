@@ -65,7 +65,7 @@
       <input id="numero" name="numero" type="text" class="input" required>
     </div>
     <div class="inputfield">
-      <label>Citta'</label>
+      <label>Citt&agrave;</label>
       <input id="citta" name="citta" type="text" class="input" required>
       <label style="margin-left: 10px">CAP</label>
       <input id="cap" name="cap" type="number" class="input" required>
