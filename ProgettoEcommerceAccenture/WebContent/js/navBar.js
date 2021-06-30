@@ -27,6 +27,7 @@ function setBarMenu(num) {
 function setActive() {
 	switch(window.location.pathname.split(`/`)[2]) {
 		case 'index.jsp':
+		case '':
 			setBarMenu('1'); break;
 		case 'listaprodotti.jsp':
 			setBarMenu('2'); break;
