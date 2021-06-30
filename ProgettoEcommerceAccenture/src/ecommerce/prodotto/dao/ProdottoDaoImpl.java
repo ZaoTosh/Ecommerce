@@ -200,7 +200,7 @@ public class ProdottoDaoImpl implements IProdottoDao{
 				if (resultSet.getString(6)==null) {
 					prodottoAppoggio.setUrl(null);
 				}else {
-					prodottoAppoggio.setUrl(resultSet.getString(5));
+					prodottoAppoggio.setUrl(resultSet.getString(6));
 				}
 				listaProdotti.add(prodottoAppoggio);
 			}
