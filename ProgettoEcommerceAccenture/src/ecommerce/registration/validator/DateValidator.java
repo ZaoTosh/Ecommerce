@@ -8,7 +8,7 @@ public class DateValidator {
 		try {
 			LocalDate ld = LocalDate.parse(date);
 			LocalDate after = LocalDate.of(1900, 01, 01);
-			LocalDate before = LocalDate.of(2020, 01, 01);
+			LocalDate before = LocalDate.of(2022, 01, 01);
 			if(ld.isBefore(before) && ld.isAfter(after))
 				return true;
 			else
