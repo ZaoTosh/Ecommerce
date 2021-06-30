@@ -1,0 +1,19 @@
+@charset "ISO-8859-1";
+
+#box {
+	padding: 15px;
+}
+
+#headerRowContacts {
+	border-bottom-style: solid;
+	border-bottom-width: 2px;
+	border-bottom-color: red;
+}
+
+#ecSrl {
+	margin-left: 30%;
+}
+
+.boxInfo {
+	padding: 10px 30px 0px 10px;
+}
