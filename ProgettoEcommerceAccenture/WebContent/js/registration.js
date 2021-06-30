@@ -1,15 +1,14 @@
-
 var username = $("#username");
 var password = $("#password");
 var confPassword = $("#confirmPassword");
 var nome = $("#nome");
 var cognome = $("#cognome");
 var via = $("#via");
-var numero = $("#nuemero");
+var numero = $("#numero");
 var citta = $("#citta");
 var cap = $("#cap");
 var dataNascita = $("#data_nascita");
-var regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{8,16}/;
+var regex = /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,16}/;
 
 username.on('keyup',function(){
 	checkUsername();});
@@ -30,23 +29,24 @@ numero.on('keyup',function(){
 citta.on('keyup',function(){
 	checkIndirizzo();});
 cap.on('keyup',function(){
+	checkCap();
 	checkIndirizzo();});
 
 function Validate(){
-	if(checkUsername() && checkNome() && checkCognome && chekPassword() && checkConfirmPassword() && checkData() && checkIndirizzo() )
+	if(checkUsername() && checkNome() && checkCognome && checkPassword() && checkConfirmPassword() && checkData() && checkIndirizzo() )
 		return true;
 	else
 		return false;
 }
 
 function checkUsername(){
-	if(username.val() != "" && username.val().length > 6){
+	if(username.val() != "" && username.val().length >= 6){
 		$("#errorUsername").html("");
 		$("#errorUsername").addClass("hideDiv");
 		return true;
 		
 	}else{
-		$("#errorUsername").html("l'username deve essere di almeno 6 caratteri");
+		$("#errorUsername").html("L'username deve essere di almeno 6 caratteri");
 		$("#errorUsername").removeClass("hideDiv");
 		return false;
 	}
@@ -57,7 +57,7 @@ function checkPassword(){
 		$("#errorPassword").addClass("hideDiv");
 		return true;
 	}else{
-		$("#errorPassword").html("almeno 6 caratteri, max 16, lettera maiuscola,minuscola,numero e car speciale");
+		$("#errorPassword").html("Almeno 6 caratteri, max 16, lettera maiuscola, minuscola, numero e carattere speciale");
 		$("#errorPassword").removeClass("hideDiv");
 		return false;
 	}
@@ -69,7 +69,7 @@ function checkNome(){
 		$("#errorNome").addClass("hideDiv");
 		return true;
 	}else{
-		$("#errorNome").html("Il nome è obbligatorio");
+		$("#errorNome").html("Il nome &egrave; obbligatorio");
 		$("#errorNome").removeClass("hideDiv");
 		return false;
 	}
@@ -81,7 +81,7 @@ function checkCognome(){
 		$("#errorCognome").addClass("hideDiv");
 		return true;
 	}else{
-		$("#errorCognome").html("Il cognome è obbligatorio");
+		$("#errorCognome").html("Il cognome &egrave; obbligatorio");
 		$("#errorCognome").removeClass("hideDiv");
 		return false;
 	}
@@ -92,34 +92,94 @@ function checkConfirmPassword(){
 		$("#errorConfermaPassword").addClass("hideDiv");
 		return true;
 	}else{
-		$("#errorConfermaPassword").html("La due password sono diverse");
+		$("#errorConfermaPassword").html("Le due password sono diverse");
 		$("#errorConfermaPassword").removeClass("hideDiv");
 		return false;
 	}
 }
+
+function upData(){
+	var toDay = new Date();
+	var toDayDate = toDay.getFullYear()+'/'+(toDay.getMonth()+1)+'/'+toDay.getDate();
+	return toDayDate;
+}
+
 function checkData(){
-	if(dataNascita.val() != ""){
-		if(dataNascita.val() > "1900/01/01" && dataNascita.val() < "2020/01/01" ){
-			$("#errorDataNascita").html("");
-			$("#errorDataNascita").addClass("hideDiv");
-			return true;
-		}else{
-			$("#errorDataNascita").html("La data deve essere compresa tra il 1900 e il 2019");
-			$("#errorDataNascita").removeClass("hideDiv");
-			return false;
-		}
-	}else{
+	if(dataNascita.val() != "" && dataNascita.val() > "1900/01/01" && dataNascita.val() < upData()){
+		$("#errorDataNascita").html("");
+		$("#errorDataNascita").addClass("hideDiv");
 		return true;
+	}else{
+		$("#errorDataNascita").html("La data deve essere compresa tra il 1900 e il "+upData());
+		$("#errorDataNascita").removeClass("hideDiv");
+		return false;
 	}
 }
+
 function checkIndirizzo(){
-	if(via.val()!="" && numero.val() != "" && citta.val() != "" && cap.val() != ""  ){
+	if(checkVia() && checkNumero() && checkCitta() && checkCap()){
 		$("#errorIndirizzo").html("");
 		$("#errorIndirizzo").addClass("hideDiv");
 		return true;
-	}else{
-		$("#errorIndirizzo").html("tutti i campi dell'indirizzo sono obbligatori");
+	}
+	else {
+		return false;
+	}
+}
+
+function checkVia() {
+	if(via.val() != "") {
+		$("#errorIndirizzo").html("");
+		$("#errorIndirizzo").addClass("hideDiv");
+		return true;
+	}
+	else {
+		$("#errorIndirizzo").html("Inserire la via");
 		$("#errorIndirizzo").removeClass("hideDiv");
 		return false;
 	}
 }
+
+function checkNumero() {
+	var numRegex = /([0-9])/;
+	if(numero.val() != "" && numero.val().match(numRegex)) {
+		$("#errorIndirizzo").html("");
+		$("#errorIndirizzo").addClass("hideDiv");
+		return true;
+	}
+	else {
+		$("#errorIndirizzo").html("Il campo numero deve contenere almeno un numero");
+		$("#errorIndirizzo").removeClass("hideDiv");
+		return false;
+	}
+}
+
+function checkCitta() {
+	if(citta.val() != "") {
+		$("#errorIndirizzo").html("");
+		$("#errorIndirizzo").addClass("hideDiv");
+		return true;
+	}
+	else {
+		$("#errorIndirizzo").html("Inserire citt&agrave;");
+		$("#errorIndirizzo").removeClass("hideDiv");
+		return false;
+	}
+}
+
+function checkCap() {
+	if(cap.val().length == 5) {
+		$("#errorIndirizzo").html("");
+		$("#errorIndirizzo").addClass("hideDiv");
+		return true;
+	}
+	else {
+		$("#errorIndirizzo").html("Il CAP deve essere lungo 5 caratteri");
+		$("#errorIndirizzo").removeClass("hideDiv");
+		return false;
+	}
+}
+
+
+
+
